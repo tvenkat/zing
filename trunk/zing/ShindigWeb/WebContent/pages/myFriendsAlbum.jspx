@@ -1,0 +1,87 @@
+<!--
+   /*
+    * Copyright 2008 The Apache Software Foundation.
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *      http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+-->  
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" version="2.0">
+
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="../css/table.css" rel="stylesheet" type="text/css" />
+
+	<script language="JavaScript">
+
+	NewImg = new Array (		
+	"../userdata/70/images/706e24f87df0493e9c73f70824621dc5.jpg",
+	"../userdata/70/images/6556a7967021ddb72ab30955f1b3721d.jpg",
+	"../userdata/70/images/d8c85c392843a182ec0fd6f7acc5419a.jpg",
+	"../userdata/60/images/9d2b4e71fe1b9fb82cf58ad36fd80530.jpg",
+	"../userdata/70/images/2e2b28e90be49beba25083ce7aa4226f.jpg");
+	
+	
+	
+	var ImgNum = 0;
+	var ImgLength = NewImg.length - 1;
+	
+	//Time delay between Slides in milliseconds
+	var delay = 3000;
+	
+	var lock = false;
+	var run;
+	function chgImg(direction) {
+		if (document.images) {
+			ImgNum = ImgNum + direction;
+			if (ImgNum > ImgLength) {
+			ImgNum = 0;
+			}
+			if (ImgNum == 0) {
+			ImgNum = ImgLength;
+			}
+			document.slideshow.src = NewImg[ImgNum];
+	  	}
+	}
+	function auto() {
+	if (lock == true) {
+			lock = false;
+			window.clearInterval(run);
+		}
+		else if (lock == false) {
+			lock = true;
+			run = setInterval("chgImg(1)", delay);
+		   }
+	}
+
+</script>
+
+	<body onload="auto()">
+	<h:panelGrid id="pnlAlbum" width="500" height="350" bgcolor="FFFFFF" border="0"
+		cellpadding="0" cellspacing="0">
+		<h:graphicImage url="../images/box/center_box_top_500.jpg"
+				width="100%"> </h:graphicImage>
+		<center>
+			<h3>My Friend's Album</h3></center>
+			<h:panelGrid style="text-align:center" width="100%" background="../images/photoframe.jpg">
+				<img src="../images/loading.gif" name="slideshow" width="400"
+					height="300" />
+			</h:panelGrid>
+		
+			<img src="../images/box/box_bottom_500.jpg"	width="100%"/>
+	</h:panelGrid>
+	</body>
+
+</jsp:root>
