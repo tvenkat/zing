@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Exceptions>
+	<CEMError value="CEMERR"/>
+	<Error id="MA001" type="mail"  cemErrorSeverity="1" severity="error" value="Invalid address." />
+	<Error id="MA002" type="mail"  cemErrorSeverity="1" severity="error" value="Sending failed." />
+	<Error id="MA003" type="mail"  cemErrorSeverity="1" severity="error" value="Message incorrect." />	
+	
+	<Error id="SF001" type="core"  cemErrorSeverity="1" severity="error" value="Service not available." />
+	<Error id="SF002" type="core"  cemErrorSeverity="1" severity="error" value="" />
+	<Error id="SF003" type="core"  cemErrorSeverity="1" severity="error" value="" />	
+	
+	<Error id="PE001" type="persistence" cemErrorSeverity="1" severity="error" value="" />
+	<Error id="PE002" type="persistence" cemErrorSeverity="1" severity="error" value="" />
+		
+	<Error id="DB001" type="dbutiity" cemErrorSeverity="1" severity="error" value="Authentication information not available." />
+	<Error id="DB002" type="dbutiity" cemErrorSeverity="1" severity="error" value="Data Source JNDI Name not found in configuration." />
+	<Error id="DB003" type="dbutiity" cemErrorSeverity="1" severity="error" value="Initial context factory class name not found in configuration." />
+	<Error id="DB004" type="dbutiity" cemErrorSeverity="1" severity="error" value="Provider URL not found in configuration." />
+	<Error id="DB005" type="dbutiity" cemErrorSeverity="1" severity="error" value="" />
+	<Error id="DB006" type="dbutiity" cemErrorSeverity="1" severity="error" value="" />
+	
+	<Error id="SL001" type="servicelocator" cemErrorSeverity="1" severity="error" value="Could not locate the service. Class/method not found." />
+	
+	<Error id="default_message" type="runtime"  cemErrorSeverity="1" severity="error" value="An error has occurred while performing this task. Please try again." />
+</Exceptions>
