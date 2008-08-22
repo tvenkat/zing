@@ -1,0 +1,59 @@
+<!--
+   /*
+    * Copyright 2008 The Apache Software Foundation.
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *      http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+-->  
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" version="2.0">
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/style.css" rel="stylesheet" type="text/css" />
+	<link href="CSS/table.css" rel="stylesheet" type="text/css" />
+	<h:form id="frmFriendUpdate">
+	<h:panelGrid columns="1" width="80%"  border="0" cellpadding="0" cellspacing="0" rendered="#{pendingRequestBean.hasOwnUpdate}" bgcolor="ffffff">
+					<h:graphicImage url="../images/box/center_box_top_500.jpg" width="100%">
+					</h:graphicImage>
+
+
+
+			<h:column bgcolor="WHITE">
+
+				<h:graphicImage url="../images/box/box_center_280.jpg"	 width="100%"/>
+
+				
+						<h:outputText align="center">
+							<center><h2>Friend's Updates</h2></center>
+						</h:outputText>
+							<h:dataTable id="friendsList" value="#{currentProfile.userFriends.allFriendActvityList}" align="center" var="record" styleClass="dataTableStyle" >
+										<h:column>	
+											<h:commandLink value="#{record.userName}" action="#{friendProfileHandler.getFriendProfile}">
+											<f:param name="friendsId" value="#{record.userId}"/>
+											</h:commandLink>
+										</h:column>
+										<h:column>
+											<h:outputText value="#{record.title}">
+											</h:outputText>
+										</h:column>									
+							</h:dataTable>
+							</h:column>
+					
+							<h:graphicImage url="../images/box/box_bottom_500.jpg"	width="100%"/>
+				
+				
+	</h:panelGrid>
+	</h:form>
+</jsp:root>
