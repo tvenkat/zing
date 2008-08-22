@@ -6,8 +6,8 @@ $\{ZingWeb\} = path to ZingWeb project
 $\{ZingWebConfig\} = path to ZingWebConfig project
 
 =CONFIGURING ZING=
-  # Download projects ShindegWeb and ShindigWebConfig from =http://zing.googlecode.com/svn/trunk/zing=
-  # Execute maven build file provided with ShindigWeb project. This will generate target  directory within the project, which contains "ZingWeb" directory.
+  # Download projects ZingWeb and ZingWebConfig from =http://zing.googlecode.com/svn/trunk/zing=
+  # Execute maven build file provided with ZingWeb project. This will generate target  directory within the project, which contains "ZingWeb" directory.
   # Download Jetty Server 6.1.9 from: http://dist.codehaus.org/jetty, and deploy the "ZingWeb" war in the  Jetty Server.
   # Browse to $\{ZingWebConfig\}/persistence/persistence.xml. Configure this file based on database credentials.
   # Set -DCOMPOSITE_CONFIG="$\{ZingWebConfig\}/configurations/configurationControlFile.xml" as environment variable.
