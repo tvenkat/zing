@@ -1,13 +1,544 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
-
-Add your content here.
+=Zing: Architecture Design Document=
 
 
-= Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+
+
+
+
+
+= =
+
+
+
+
+
+
+
+
+
+
+Author: Impetus InfoTech India =  
+=
+=Revision History=
+
+
+
+{|
+|=Revision No=||=Author=||=Date=||=Reason for Change=||=Comments=
+|-
+|1.||Impetus InfoTech||Aug 20<sup>th</sup>, 2008||Creation||NA
+|-
+|||||||||
+|-
+|}
+= 
+					Table of Content=
+=[=<u>1.</u>	<u>Introduction</u>	4-]
+<u>[2.</u>	<u>Project Stack</u>	4-]
+<u>[2.1</u>	<u>Hardware Stack</u>	4-]
+<u>[2.2</u>	<u>Software Stack</u>	4-]
+<u>[3.</u>	<u>Architectural Components</u>	5-]
+<u>[2.3</u>	<u>SNS Container</u>	7-]
+<u>[3.1.1</u>	<u>Gadget Container (iFrame)</u>	7-]
+<u>[3.1.2</u>	<u>SNS Custom Service Layer</u>	8-]
+<u>[2.4</u>	<u>Shindig Container</u>	8-]
+<u>[3.1.3</u>	<u>Gadget Rendering Handler</u>	8-]
+<u>[3.1.4</u>	<u>RESTful Service Handler</u>	9-]
+<u>[3.1.4.1</u>	<u>Person\’s Profile Data</u>	9-]
+<u>[3.1.4.2</u>	<u>Activities Data</u>	9-]
+<u>[3.1.4.3</u>	<u>AppData (Application Data)</u>	10-]
+<u>[3.1.5</u>	<u>Shindig Container Features</u>	10-]
+<u>[3.1.5.1</u>	<u>Caja</u>	10-]
+<u>[3.1.5.2</u>	<u>OAuth</u>	12-]
+<u>[3.1.6</u>	<u>Service Layer</u>	13-]
+<u>[3.1.6.1</u>	<u>People Service</u>	13-]
+<u>[3.1.6.2</u>	<u>Activity Service</u>	13-]
+<u>[3.1.6.3</u>	<u>Application Service</u>	13-]
+<u>[4.</u>	<u>ZING DB Schema:</u>	13-]
+''[3.1.7''	''Activities''	13-]
+''[3.1.8''	''Media_items''	14-]
+''[3.1.9''	''Applications''	14-]
+''[3.1.10''	''Application_data''	14-]
+''[3.1.11''	''User_album''	14-]
+''[3.1.12''	''User_applications''	14-]
+''[3.1.13''	''User_broadcast''	15-]
+''[3.1.14''	''User_friend''	15-]
+''[3.1.15''	''User_main''	15-]
+''[3.1.16''	''User_online_status''	15-]
+''[3.1.17''	''User_profile''	15-]
+''[3.1.18''	''User_scrap''	15-]
+
+  # <u>= 
+Introduction=</u>
+
+The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (SNS) vis-à-vis Java Shindig OpenSocial Reference implementation.
+
+In this document a thorough inspection of all the individual constituent components and the features supported by Shindig server in technical perspective.
+
+
+  # <u>=Project Stack=</u>
+
+  ## =Hardware Stack=
+
+As provided.
+
+  ## =Software Stack=
+
+This section enlists all the software that has been used for the application development.
+
+  # Java 1.6 ( jdk version 1.6.0_02 )
+  # MySQL 5.0
+  # Java Shindig Server(OpenSocial-0.8)
+  # Jetty Server 6.1.9 (J2EE 2.5 Spec)
+  # JSF 1.2 with Facelets 1.1 and Trinidad component library 1.0.8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # <u>=Architectural Components=</u>
+
+
+ 
+=Zing Architecture Diagram=
+
+
+ 
+
+
+=Configuration Handler=
+This class is a configuration handler for the entire application. It makes use of the apache commons configuration internally. The objective of this class is to manage all types of properties (.properties/.xml and system) by the use of a common interface (ConfigInterface). 
+=Persistence Framework=
+This framework is a reusable component that is used for entire database access across the Zing application. This framework uses the configuration interface for retrieving the persistence configuration to map the objects to queries.
+=Services Factory=
+This is a factory class responsible for singleton instantiation of services in the application that are stateless in nature. Service Locator uses the service factory for one-time instantiation of service objects
+
+=Exception Handler=
+The exception handler handles the application exception and uses the logger and configuration framework to log the appropriate exception and re-throw it appropriately
+=Logger=
+This is an application wide logger that is responsible for logging messages in the log file.
+=Data Objects=
+These are the objects that hold the state for the user requests and responses for rendering information on the web pages. They are serializable for future remotability.
+
+
+
+  ## =SNS Container=
+
+This is basically web container that hosts Java Social Networking Site (SNS) which supports various different features. To make this site open social compatible, i.e., it can host the OpenSocial gadgets; it is integrated with Shindig Java Server, which is an open source implementation of the OpenSocial specification and gadgets specification.
+
+SNS site is also referred as container, as it can host the OpenSocial gadgets and conforms to the open social specifications. The term container is bit bewildering and used to refer to SNS site and gadget container interchangeably. 
+
+
+
+  ###  <u>=Gadget Container (iFrame)=</u>
+
+The integration of Shindig with SNS is done via iFrame, which act as a container to host the gadgets inside the SNS. iFrame provides the environment to execute the gadgets inside the web pages. 
+
+iFrame is the significant means for the integration of SNS with the Shindig server.  Below is the code snippet use to embed the gadgets within the SNS.
+
+			=Code Snippet=
+		
+<iframe src="http://path/to/shindig/gadgets/ifr?parent=http://path/to/shindig&amp;url=http://url/of/gadget &amp;st=viewer_id:owner_id:app_key:domain_key:app_url_key:module_key">
+</iframe>
+
+Parameter Description:
+
+{|
+|=src=||=Path to handler to render gadget.=
+|-
+|=url=||=URL for the gadget to be rendered.=
+|-
+|=st=||=Security Token =
+|-
+|}
+
+
+  ###  <u>=SNS Custom Service Layer=</u>
+
+Custom Service Layer is used by the SNS to fetch the data from the database bypassing the Shindig Container service layer. This provides the flexibility and performance improvement over retrieving the data from Shindig Service Layer via RESTful services. 
+
+  ## =Shindig Container=
+
+Shindig container is an open source implementation of the OpenSocial specification and gadgets specification. It executes atop of Servlet APIs and handles various request of Gadget rendering and Data serving to the gadgets and pages over the HTTP protocol. 
+
+Various features provided by the Shindig container are CAJA, OAuth etc. Adding to this, it also contains a service layer, which inscribes people services, activity service and application service, which talks with the database layer to retrieve respective data. 
+
+  ###  <u>=Gadget Rendering Handler=</u>
+
+The sole responsibility of this component is to handle the Gadget Rendering request and returns the rendered component over the HTTP protocol. This component works vis-à-vis Gadget Server which renders the gadget XML into JavaScript and HTML for the container to expose via the container JavaScript.
+
+The gadget rendering request diverted to the Gadget Rendering Handler, which contains the following information as query string: 
+
+  # Gadget URL
+  # Security Token
+
+
+  ###  <u>=RESTful Service Handler=</u>
+
+The RESTful capabilities of the Shindig container are exposed through this handler. It serves to fulfill the OpenSocial data request via RESTful calls. When a gadget is rendered within the SNS, it simultaneously makes the OpenSocial data request, which is handled through this component of Shindig Container.
+
+This component works in conjunction with Shindig Container Service Layer to fetch data on its behalf. 
+
+Following are the different scenario for feting user\’s data (profile, activities, & app data)
+
+#  ###  <u>=Person\’s Profile Data=</u>
+
+  ## Collection of all people connected to user \{guid\}
+	''http://path/to/shindig/social/rest/people/\{guid\}/@all''
+
+  ## Collection of all friends of user \{guid\}
+	''http://path/to/shindig/social/rest/people/\{guid\}/@friends''
+
+  ## Collection of all people connected to user \{guid\} in group \{groupid\}
+	''http://path/to/shindig/social/rest/people/\{guid\}/\{groupid\}''
+	
+  ## Individual person record for a specific person known to \{guid\}; shows \{guid\}\’s view of \{pid\}
+	''http://path/to/shindig/social/rest/people/\{guid\}/@all/\{pid\}                ''
+
+  ## Profile record for user \{guid\}
+	''http://path/to/shindig/social/rest /people/\{guid\}/@self''
+
+  ## Profile record for requestor
+	''http://path/to/shindig/social/rest /people/@me/@self                       ''
+  
+#  ###  <u>=Activities Data=</u>
+
+  # Collection  of Activities generated by given user \{guid\}
+	        		 ''http://path/to/shindig/social/rest/activities/\{guid\}/@self''
+
+  # Collection of all friends of user \{guid\} Collection of activities for friends of the user \{guid\}
+	   		''http://path/to/shindig/social/rest/activities/\{guid\}/@friends             ''
+
+  # Collection of activities for people in group \{groupid\} belonging to given user \{uid \}
+			 ''http://path/to/shindig/social/rest/activities/\{guid\}/\{groupid\}            ''
+
+  # Individual activity resource; usually discovered from collection 
+			''http://path/to/shindig/social/rest/activities/\{guid \}/@self/\{activityid\}   ''
+
+
+
+#  ###  <u>=AppData (Application Data)=</u>
+
+  ## All app data for user \{guid\}, app \{appid\}
+	''http://path/to/shindig/social/rest/appdata/\{guid\}/@self/\{appid\}''
+
+  ## app data for friends of user \{guid\} and app \{appid\}
+	''http://path/to/shindig/social/rest/appdata/\{guid\}/@friends/\{appid\} ''
+
+  ## Just the count field for user \{guid\}, app \{appid\}
+	''http://path/to/shindig/social/rest/appdata/\{guid\}/@self/\{appid\}?fields=count ''
+
+
+                   All of the above requests can have standard query parameter like ''format (''format is used to tell the container in which format output is required. The two standard values of format are json & atom. Container may support more other than these two but these two are must).
+
+
+  ###  <u>=Shindig Container Features =</u>
+
+Shindig contains various features, of which CAJA and OAuth were exploited within the SNS. These features are elaborated below:
+
+#  ###  <u>=Caja=</u>
+
+Using Caja, Shindig Container can safely allow scripts gadgets provided by third party. Caja enables documents to carry active content safely, i.e., scripts in web pages. 
+
+Web apps generally remove scripts from third party content, reducing content to passive data. CAJA component of Shindig container cajoles the JavaScript embedded inside the gadgets and provides the script in object capability language, using which web apps web apps could provide active content safely, simply, and flexibly.
+
+There were some tweakins made to enable the CAJA feature in Shindig, which is disable by default are enlisted below:
+
+  # Uncomment the line\#23 =feature.xml= file located at: Shindig_SRC\features\opensocial-current so that it can include the CAJA dependency. Find the code snippet below:
+
+  <name>opensocial-0.8</name>
+  <dependency>opensocial-reference</dependency>
+  =<dependency>caja</dependency> =
+  <!-- Must include the "caja" feature to display samplecontainer -->
+  <!-- gadgets when "use caja" is checked -->
+  <gadget>
+
+  # Change the =container.js= located at Shindig_SRC\shindig\config to modify the parameter =enableCaja =to true at line\#103. Find the code snippet below:
+
+"opensocial-0.8" : \{
+    // Path to fetch opensocial data from
+    // Must be on the same domain as the gadget rendering server
+    "path" : "/social/rest",
+    "domain" : "shindig",
+    ="enableCaja" : true,=
+    "supportedFields" : \{
+       "person" : \["id", "name", "thumbnailUrl", "profileUrl"\],
+       "activity" : \["id", "title"\]
+    \}
+  \}
+
+#  ###  <u>=OAuth=</u>
+
+OAuth allows to share private resources (photos, videos, contact list, bank accounts) stored on one site with another site without having to hand out username and password. 
+
+Within this process, site (OAuth Consumer) trying to access the resources on behalf of its user, makes request to third party (OAuth Service provider) using Request Token, and receives the Access token, after the consumer is being authorized by the user. After receiving the Access Token from service provider, consumer can act authorized party to access the user resources on the service provider.
+
+To use this service, service provider provides secret key to the consumer, which act as a Request Token for the specific gadget.
+
+Shindig works as a consumer to OAuth service and a secret key need to be provided to be provided to formulate the Request Token for a specific gadget. This key is provided in =oauth.json= file located at Shindig_SRC\shindig\config.
+
+The snippet for the same is given below:
+
+\{
+"Gadget URL" : \{
+    "Service_Name" : \{
+"consumer_key" : "Any Consumer Key",
+"consumer_secret" : "Any Secret Key",
+     	 "key_type" : "Key Type"
+    \}
+  \}
+
+Parameter Description:
+
+{|
+|GadgetURL ||URL of the gadget that uses OAuth services.
+|-
+|Service_Name||Name of the service.
+|-
+|consumer_key||Consumer Key provided by service provider
+|-
+|consumer_secret_ key||Secret key provided by the service provider.
+|-
+|key_type||Specifies the key type, like RSA, HMAC etc.
+|-
+|}
+
+
+Same snipet need to be embebded for each new gadget usinf OAuth feature.
+
+  ###  <u>=Service Layer=</u>
+
+Shindig Service Layer comprises of the services which conforms to OpenSocial specs. It comprises of People Service, Activity Service, and Application Service.
+
+Elaboration to each of the services is given below:
+
+#  ###  <u>=People Service=</u>
+
+People Service provides the list of people and friends bound to this SNS. This service forms the epicenter of complete OpenSocial spec.
+ 	
+#  ###  <u>=Activity Service=</u>
+
+The Activity Service defines the service provider interface to retrieve the activities from the underlying SNS database.
+
+
+#  ###  <u>=Application Service=</u>
+
+The Application Service defines the service provider interface that is used to retrieve information bound to a person. Also, there are methods to update an delete data. 
+
+
+
+
+
+
+
+  # <u>=ZING DB Schema:=</u>
+
+Attached is the MYSQL DB Structure used in ZING:
+
+
+  ###  <u>=''Activities=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|activity_id||int(11)||Yes||NULL
+|-
+|user_id||int(11)||Yes||
+|-
+|application_id||int(11)||Yes||
+|-
+|title||char(128)||Yes||
+|-
+|body||char(255)||Yes||
+|-
+|}
+  ###  <u>=''Media_items=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|id||int(11)||Yes||NULL
+|-
+|activity_id||int(11)||Yes||
+|-
+|mime_type||char(64)||Yes||
+|-
+|media_type||char(10)||Yes||
+|-
+|url||char(128)||Yes||
+|-
+|}
+
+
+  ###  <u>=''Applications=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|id||int(11)||Yes||NULL
+|-
+|=application_url=||char(128)||Yes||
+|-
+|title||char(128)||Yes||NULL
+|-
+|thumbnail||char(128)||Yes||NULL
+|-
+|author||char(128)||Yes||NULL
+|-
+|author_email||char(128)||Yes||NULL
+|-
+|description||mediumtext||Yes||NULL
+|-
+|settings||mediumtext||Yes||NULL
+|-
+|version||varchar(64)||Yes||
+|-
+|height||int(11)||Yes||0
+|-
+|order||int(11)||Yes||
+|-
+|}
+  ###  <u>=''Application_data=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|=application_id=||int(11)||Yes||
+|-
+|=user_id=||int(11)||Yes||
+|-
+|=module_id=||int(11)||Yes||
+|-
+|=Key=||char(128)||Yes||
+|-
+|value||char(255)||Yes||
+|-
+|}
+  ###  <u>=''User_album=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|user_id||int(11)||Yes||
+|-
+|photo_id||int(11)||Yes||
+|-
+|photo_name||varchar(50)||Yes||
+|-
+|thumb_name||varchar(50)||Yes||
+|-
+|photo_caption||varchar(100)||Yes||NULL
+|-
+|}
+  ###  <u>=''User_applications=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|=id=||int(11)||Yes||NULL
+|-
+|user_id||int(11)||Yes||
+|-
+|application_id||int(11)||Yes||
+|-
+|}
+  ###  <u>=''User_broadcast=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|=user_id=||int(11)||Yes||
+|-
+|header||varchar(100)||Yes||NULL
+|-
+|article||varchar(1024)||Yes||NULL
+|-
+|article_title||varchar(50)||Yes||NULL
+|-
+|time_expire||datetime||Yes||
+|-
+|}
+  ###  <u>=''User_friend=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|=user_id=||int(11)||Yes||
+|-
+|=friend_id=||int(11)||Yes||
+|-
+|pending||enum(\’yes\’, \’no\’)||Yes||
+|-
+|}
+  ###  <u>=''User_main=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|=user_id=||int(11)||Yes||NULL
+|-
+|=user_name=||varchar(25)||Yes||
+|-
+|user_password||varchar(25)||Yes||
+|-
+|user_email||varchar(128)||Yes||
+|-
+|}
+  ###  <u>=''User_online_status=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|user_id||int(11)||Yes||
+|-
+|last_online_time||datetime||Yes||
+|-
+|online_status||enum(\’yes\’, \’no\’)||Yes||
+|-
+|}
+  ###  <u>=''User_profile=''</u>
+{|
+|=Field=||=Type=||=Null=||=Default=
+|-
+|user_id||int(11)||Yes||
+|-
+|first_name||varchar(25)||Yes||NULL
+|-
+|last_name||varchar(25)||Yes||NULL
+|-
+|Gender||enum(\’m\’, \’f\’)||Yes||m
+|-
+|user_image||varchar(50)||Yes||NULL
+|-
+|profile_url||varchar(100)||Yes||
+|-
+|country||varchar(50)||Yes||NULL
+|-
+|city||varchar(50)||Yes||NULL
+|-
+|interests||varchar(100)||Yes||
+|-
+|date_of_birth||varchar(20)||Yes||NULL
+|-
+|}
+  ###  <u><u>=''User_scrap=''</u></u>
+{|
+|=Field=||=Type=||=Null=||==Default==
+|-
+|scrap_id||int(11)||Yes||
+|-
+|sender_id||int(11)||Yes||
+|-
+|receiver_id||int(11)||Yes||
+|-
+|scrap_content||text||Yes||
+|-
+|}
