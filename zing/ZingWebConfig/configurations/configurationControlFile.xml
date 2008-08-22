@@ -1,0 +1,16 @@
+<configuration>
+<header>
+    <result delimiterParsingDisabled="false">
+      <expressionEngine config-class="org.apache.commons.configuration.tree.xpath.XPathExpressionEngine"/>
+    </result>
+</header>
+<override>
+	  <system/>
+	  <xml fileName="services/ServicesConfiguration.xml"/>	  
+	  <xml fileName="exception/ExceptionBundle.xml"/>
+	  <xml fileName="persistence/Persistence.xml"/>
+  	  <xml fileName="persistence/PersistenceConfiguration.xml"/>
+  	  <xml fileName="mail/MailConfiguration.xml"/>
+	  <properties fileName="mail/Mail.properties"/>
+</override>
+</configuration>

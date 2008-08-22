@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MailConfiguration>
+	<MailAddresses>
+		<Service name ="authorizedagent">
+			<To>
+				<Recipient name="pankaj.misra@impetus.co.in" />
+				<Recipient name="grijesh.maurya@impetus.co.in" />
+				<Recipient name="ashish.dahiya@impetus.co.in" />
+			 </To>
+			<From>AuthorizedAgentForm@alltel.com</From>
+			<Subject>Authorized Agent Form</Subject>
+		</Service>	
+	</MailAddresses>
+	
+</MailConfiguration>
