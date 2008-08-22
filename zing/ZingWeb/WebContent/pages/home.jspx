@@ -1,0 +1,71 @@
+<!--
+   /*
+    * Copyright 2008 The Apache Software Foundation.
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *      http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+-->  
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    version="2.0">
+
+<ui:composition template="../templates/default/layout.jspx">
+<ui:define name="content">
+		<table width="800"  align="center" cellpadding="0" cellspacing="0" >
+			<tr>
+				<td width="500" valign="top" >
+					<ui:insert name="myFriendsAlbum">
+					<ui:include src="myFriendsAlbum.jspx" />
+					</ui:insert>
+				</td>
+				<td width="280" valign="top">
+					<ui:insert name="myFriends">
+					<ui:include src="myFriends.jspx" />
+					</ui:insert>
+				</td>
+			</tr>
+				<tr>
+				<td width="500" valign="top">
+					<ui:insert name="pending">
+					<ui:include src="friendRequestPending.jspx" />
+					</ui:insert>
+				</td>
+			</tr>
+			<tr>
+				<td width="500" valign="top">
+					<ui:insert name="update">
+					<ui:include src="friendUpdate.jspx" />
+					</ui:insert>
+				</td>
+			</tr>
+			
+			
+		</table>	
+</ui:define>
+</ui:composition>
+</jsp:root>
+
+
+
+
+
+
+
+
+
+
+
+

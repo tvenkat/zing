@@ -1,0 +1,238 @@
+<!--
+   /*
+    * Copyright 2008 The Apache Software Foundation.
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *      http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+-->   
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <xsd:include schemaLocation=""></xsd:include>
+    <xsd:complexType name="UserFriends">
+    	<xsd:sequence minOccurs="0" maxOccurs="1">
+    		<xsd:element name="friends" type="UserAuth" minOccurs="0"
+    			maxOccurs="unbounded">
+    		</xsd:element>
+    		<xsd:sequence>
+    			<xsd:element name="userFriendsImages" type="Image"
+    				maxOccurs="unbounded" minOccurs="0">
+    			</xsd:element>
+    		</xsd:sequence>
+    		<xsd:sequence>
+    			<xsd:element name="allFriendActvityList" type="Activity" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:sequence>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="friendId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="pending">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="yes"></xsd:enumeration>
+    				<xsd:enumeration value="no"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserScrap">
+    	<xsd:attribute name="recieverId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="scrapId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="senderId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="scrapContent" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="senderName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="senderImage" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="renderd" type="xsd:boolean"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="Application">
+    	<xsd:attribute name="url" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="appId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="directoryTitle" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="screenshot" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="thumbnail" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="author" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="authorEmail" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="description" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="settings" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="version" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="height" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="scrolling" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="modified" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="order" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="applicationId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="status" type="xsd:boolean"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserAlbum">
+    	<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    		<xsd:element name="image" type="Image"></xsd:element>
+    	</xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Image">
+    	<xsd:attribute name="imageId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="imageName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="thumbName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="imageCaption" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="userName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="gender" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserApplications">
+    	<xsd:sequence minOccurs="0" maxOccurs="1">
+    		<xsd:element name="application" type="Application"></xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="applicationId" type="xsd:int"></xsd:attribute>
+    </xsd:complexType>
+    
+    <xsd:complexType name="Activity">
+    	<xsd:sequence>
+    		<xsd:element name="activityMedia" type="ActivityMedia"
+    			minOccurs="0" maxOccurs="unbounded">
+    		</xsd:element>
+    	</xsd:sequence>
+    	<xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="body" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="created" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="activityId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="applicationId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="userName" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserProfile">
+    	<xsd:attribute name="firstName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="lastName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="gender">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="m"></xsd:enumeration>
+    				<xsd:enumeration value="f"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    	<xsd:attribute name="userImage" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="profileURL" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="country" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="city" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="interests" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="dateOfBirth" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserAuth">
+    	<xsd:sequence minOccurs="1" maxOccurs="1">
+    		<xsd:element name="profile" type="UserProfile" minOccurs="1"
+    			maxOccurs="1">
+    		</xsd:element>
+    		<xsd:sequence>
+    			<xsd:element name="activities" type="Activity"
+    				minOccurs="0" maxOccurs="unbounded">
+    			</xsd:element>
+    		</xsd:sequence>
+    		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    			<xsd:element name="scraps" type="UserScrap"
+    				minOccurs="0" maxOccurs="unbounded">
+    			</xsd:element>
+    		</xsd:sequence>
+
+    		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+    			<xsd:element name="images" type="Image" minOccurs="0"
+    				maxOccurs="unbounded">
+    			</xsd:element>
+    		</xsd:sequence>
+    		<xsd:sequence>
+    			<xsd:element name="presence" type="UserPresence"
+    				minOccurs="1" maxOccurs="1">
+    			</xsd:element>
+    		</xsd:sequence>
+
+
+    		<xsd:sequence>
+
+    			<xsd:element name="applications" type="UserApplications" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:sequence>
+    	<xsd:attribute name="userName" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="userPassword" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="userEmail" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int">
+    	</xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserBroadcast">
+    	<xsd:attribute name="header" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="article" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="articleTitle" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="timeExpire" type="xsd:dateTime"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    </xsd:complexType>
+
+
+    <xsd:complexType name="ApplicationSettings">
+    	<xsd:attribute name="applicationId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="userId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="moduleId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="UserPresence">
+    	<xsd:attribute name="userid" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="lastOnlineTime" type="xsd:dateTime"></xsd:attribute>
+    	<xsd:attribute name="onlineStatus">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="yes"></xsd:enumeration>
+    				<xsd:enumeration value="no"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="ActivityMedia">
+    	<xsd:attribute name="activityId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="activityMediaId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="mimeType">
+    		<xsd:simpleType>
+    			<xsd:restriction base="xsd:string">
+    				<xsd:enumeration value="AUDIO"></xsd:enumeration>
+    				<xsd:enumeration value="IMAGE"></xsd:enumeration>
+    				<xsd:enumeration value="VIDEO"></xsd:enumeration>
+    			</xsd:restriction>
+    		</xsd:simpleType>
+    	</xsd:attribute>
+    	<xsd:attribute name="mediaType" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="url" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="CodeImage">
+    	<xsd:attribute name="codeImageId" type="xsd:int"></xsd:attribute>
+    	<xsd:attribute name="codeImageUrl" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="codeImageCaption" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="codeEntered" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:complexType name="SendMail">
+    	<xsd:attribute name="mailTo" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="subject" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="contents" type="xsd:string"></xsd:attribute>
+    	<xsd:attribute name="mailFrom" type="xsd:string"></xsd:attribute>
+    </xsd:complexType>
+
+    <xsd:element name="NewElement" type="xsd:string"></xsd:element>
+</xsd:schema>

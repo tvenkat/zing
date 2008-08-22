@@ -1,0 +1,80 @@
+<!--
+   /*
+    * Copyright 2008 The Apache Software Foundation.
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *      http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    */
+-->  
+
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:ui="http://java.sun.com/jsf/facelets"  
+    xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:f="http://java.sun.com/jsf/core" 
+    version="2.0">
+    
+<ui:composition template="../templates/default/layout.jspx">
+<ui:define name="content">    
+
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/table.css" rel="stylesheet" type="text/css" />
+<f:loadBundle basename="com.iLabs.spice.nls.ViewAllFriends" var="msgBundle" />
+<h:form id="viewAllFriends">
+	
+	<table width="800"  border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF"  >
+	
+		  <tr valign="top">
+		    <td height="29" background="../images/box/box_top_800.jpg"></td>
+		  </tr>
+		   
+		  
+		  <tr>
+		  <td valign="bottom" height="60" >
+		  		<h2>Friend List</h2>
+		  </td>
+		  </tr>
+		  
+		  <tr>
+			<td   valign="top">
+			    <h:dataTable id="friendsDataTable"  value="#{currentProfile.userFriends.userFriendsImages}" var="image" align="center"  styleClass="dataTable" columnClasses="column1,column1,column1" >			 	 							
+					       		<h:column >
+					       			<h:panelGrid  styleClass="panelBorder" >
+					       			       <h:graphicImage value="#{image.imageName}"  style="border: 2px solid blue; height: 100px; width: 100px" ></h:graphicImage>
+					       			 </h:panelGrid >
+					       	    </h:column>
+					       		<h:column >
+					       			<h:commandLink  action="#{friendProfileHandler.getFriendProfile}" value="#{image.userName}"  >
+					       				<f:param name="friendsId" value="#{image.userId}"></f:param>
+					       			</h:commandLink>
+					       		</h:column>	       			
+					       		<h:column>
+					       		<h:outputText  value="#{msgBundle[image.gender]}"/>					       			
+					       		</h:column>	
+					  					       		 												
+				</h:dataTable>
+			 </td>
+	  	  </tr>
+	  	  
+	  	   
+	  	 <tr>
+   		  <td background="../images/box/box_bottom_800.jpg" height="20"></td>
+ 	 	</tr>  
+		
+  	 </table>
+  	  
+	 
+</h:form>
+
+</ui:define>
+</ui:composition>
+
+</jsp:root>
