@@ -27,6 +27,9 @@ This section enlists all the software that has been used for the application dev
 
  
 ==Zing Architecture Diagram==
+[http://zing.googlecode.com/svn/trunk/zing/images/Architecture_Overview.gif]
+
+[http://zing.googlecode.com/svn/trunk/zing/images/Architecture_Detailed.gif]
 
 ===Configuration Handler===
 This class is a configuration handler for the entire application. It makes use of the apache commons configuration internally. The objective of this class is to manage all types of properties (.properties/.xml and system) by the use of a common interface (ConfigInterface). 
