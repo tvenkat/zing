@@ -20,5 +20,5 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Deploy the generated Shindig war into ROOT directory of Jetty server. 
 
 =CONFIGURING DATABASE=
-  # Download the database script zing_db.sql from http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/ zing_db.sql, and execute the script on MySQL database.
-Finally, start the Jetty server and hit the URL: http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx
+  # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
+Finally, start the Jetty server and hit the URL: !http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx
