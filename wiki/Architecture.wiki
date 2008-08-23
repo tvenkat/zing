@@ -1,6 +1,6 @@
 =Introduction=
 
-The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (SNS) vis-à-vis Java Shindig !OpenSocial Reference implementation.
+The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (!SNS) !vis-!à-!vis Java Shindig !OpenSocial Reference implementation.
 
 In this document a thorough inspection of all the individual constituent components and the features supported by Shindig server in technical perspective.
 
@@ -15,11 +15,11 @@ As provided.
 
 This section enlists all the software that has been used for the application development.
 
-  # Java 1.6 ( jdk version 1.6.0_02 )
-  # MySQL 5.0
-  # Java Shindig Server(OpenSocial-0.8)
+  # Java 1.6 (!jdk version 1.6.0_02)
+  # !MySQL 5.0
+  # Java Shindig Server(!OpenSocial-0.8)
   # Jetty Server 6.1.9 (J2EE 2.5 Spec)
-  # JSF 1.2 with Facelets 1.1 and Trinidad component library 1.0.8
+  # !JSF 1.2 with !Facelets 1.1 and Trinidad component library 1.0.8
 
 
 =Architectural Components=
@@ -68,14 +68,10 @@ iFrame is the significant means for the integration of SNS with the Shindig serv
 
 Parameter Description:
 
-{|
-|=src=||=Path to handler to render gadget.=
-|-
-|=url=||=URL for the gadget to be rendered.=
-|-
-|=st=||=Security Token =
-|-
-|}
+||*src*||*Path to handler to render gadget*||
+||*url*||*URL for the gadget to be rendered*||
+||*st*||*Security Token*||
+||
 
 
 ===SNS Custom Service Layer====
@@ -215,18 +211,13 @@ The snippet for the same is given below:
 }}}
 Parameter Description:
 
-{|
-|GadgetURL ||URL of the gadget that uses OAuth services.
-|-
-|Service_Name||Name of the service.
-|-
-|consumer_key||Consumer Key provided by service provider
-|-
-|consumer_secret_ key||Secret key provided by the service provider.
-|-
-|key_type||Specifies the key type, like RSA, HMAC etc.
-|-
-|}
+||
+GadgetURL |-|URL of the gadget that uses OAuth services.
+||Service_Name|-|Name of the service.
+||consumer_key|-|Consumer Key provided by service provider
+||consumer_secret_ key|-|Secret key provided by the service provider.
+||key_type|-|Specifies the key type, like RSA, HMAC etc.
+||
 
 
 Same snipet need to be embebded for each new gadget usinf OAuth feature.
@@ -299,6 +290,7 @@ Attached is the MYSQL DB Structure used in ZING:
 |-
 |id||int(11)||Yes||NULL
 |-
+
 
 |=application_url=||char(128)||Yes||
 |-
