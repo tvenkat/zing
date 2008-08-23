@@ -210,235 +210,153 @@ The snippet for the same is given below:
   \}
 }}}
 Parameter Description:
-
 ||
-GadgetURL |-|URL of the gadget that uses OAuth services.
-||Service_Name|-|Name of the service.
-||consumer_key|-|Consumer Key provided by service provider
-||consumer_secret_ key|-|Secret key provided by the service provider.
-||key_type|-|Specifies the key type, like RSA, HMAC etc.
+||*GadgetURL*||URL of the gadget that uses OAuth services||
+||*Service_Name*||Name of the service||
+||*consumer_key*||Consumer Key provided by service provider||
+||*consumer_secret_ key*||Secret key provided by the service provider||
+||*key_type*||Specifies the key type, like RSA, HMAC etc||
 ||
 
 
-Same snipet need to be embebded for each new gadget usinf OAuth feature.
+Same snippet need to be embedded for each new gadget using OAuth feature.
 
-  ###  <u>=Service Layer=</u>
+==Service Layer==
 
 Shindig Service Layer comprises of the services which conforms to OpenSocial specs. It comprises of People Service, Activity Service, and Application Service.
 
 Elaboration to each of the services is given below:
 
-#  ###  <u>=People Service=</u>
+===People Service===
 
 People Service provides the list of people and friends bound to this SNS. This service forms the epicenter of complete OpenSocial spec.
  	
-#  ###  <u>=Activity Service=</u>
+===Activity Service===
 
 The Activity Service defines the service provider interface to retrieve the activities from the underlying SNS database.
 
 
-#  ###  <u>=Application Service=</u>
+===Application Service===
 
 The Application Service defines the service provider interface that is used to retrieve information bound to a person. Also, there are methods to update an delete data. 
 
 
-
-
-
-
-
-  # <u>=ZING DB Schema:=</u>
+==ZING DB Schema==
 
 Attached is the MYSQL DB Structure used in ZING:
 
+===Activities===
+||
+||*Field*||*Type*||*Is Null?*||*Default*||
+||activity_id||int(11)||Yes||NULL||
+||user_id||int(11)||Yes||-||
+||application_id||int(11)||Yes||-||
+||title||char(128)||Yes||-||
+||body||char(255)||Yes||-||
+||
 
-  ###  <u>=''Activities=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|activity_id||int(11)||Yes||NULL
-|-
-|user_id||int(11)||Yes||
-|-
-|application_id||int(11)||Yes||
-|-
-|title||char(128)||Yes||
-|-
-|body||char(255)||Yes||
-|-
-|}
-  ###  <u>=''Media_items=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|id||int(11)||Yes||NULL
-|-
-|activity_id||int(11)||Yes||
-|-
-|mime_type||char(64)||Yes||
-|-
-|media_type||char(10)||Yes||
-|-
-|url||char(128)||Yes||
-|-
-|}
+===Media_items===
+||
+||*Field*||*Type*||*Is Null?||*Default*||
+||id||int(11)||Yes||NULL||-||
+||activity_id||int(11)||Yes||-||
+||mime_type||char(64)||Yes||-||
+||media_type||char(10)||Yes||-||
+||url||char(128)||Yes||-||
+||
 
 
-  ###  <u>=''Applications=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|id||int(11)||Yes||NULL
-|-
+===Applications===
+||
+|*Field*||*Type*||*Null*||*Default*||
+||id||int(11)||Yes||NULL||-||
+||=application_url=||char(128)||Yes||-||
+||title||char(128)||Yes||NULL||-||
+||thumbnail||char(128)||Yes||NULL||-||
+||author||char(128)||Yes||NULL||-||
+||author_email||char(128)||Yes||NULL||-||
+||description||mediumtext||Yes||NULL||-||
+||settings||mediumtext||Yes||NULL||-||
+||version||varchar(64)||Yes||-||
+||height||int(11)||Yes||0||-||
+||order||int(11)||Yes||-||
+||
 
-
-|=application_url=||char(128)||Yes||
-|-
-|title||char(128)||Yes||NULL
-|-
-|thumbnail||char(128)||Yes||NULL
-|-
-|author||char(128)||Yes||NULL
-|-
-|author_email||char(128)||Yes||NULL
-|-
-|description||mediumtext||Yes||NULL
-|-
-|settings||mediumtext||Yes||NULL
-|-
-|version||varchar(64)||Yes||
-|-
-|height||int(11)||Yes||0
-|-
-|order||int(11)||Yes||
-|-
-|}
-  ###  <u>=''Application_data=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|=application_id=||int(11)||Yes||
-|-
-|=user_id=||int(11)||Yes||
-|-
-|=module_id=||int(11)||Yes||
-|-
-|=Key=||char(128)||Yes||
-|-
-|value||char(255)||Yes||
-|-
-|}
-  ###  <u>=''User_album=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|user_id||int(11)||Yes||
-|-
-|photo_id||int(11)||Yes||
-|-
-|photo_name||varchar(50)||Yes||
-|-
-|thumb_name||varchar(50)||Yes||
-|-
-|photo_caption||varchar(100)||Yes||NULL
-|-
-|}
-  ###  <u>=''User_applications=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|=id=||int(11)||Yes||NULL
-|-
-|user_id||int(11)||Yes||
-|-
-|application_id||int(11)||Yes||
-|-
-|}
-  ###  <u>=''User_broadcast=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|=user_id=||int(11)||Yes||
-|-
-|header||varchar(100)||Yes||NULL
-|-
-|article||varchar(1024)||Yes||NULL
-|-
-|article_title||varchar(50)||Yes||NULL
-|-
-|time_expire||datetime||Yes||
-|-
-|}
-  ###  <u>=''User_friend=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|=user_id=||int(11)||Yes||
-|-
-|=friend_id=||int(11)||Yes||
-|-
-|pending||enum(\’yes\’, \’no\’)||Yes||
-|-
-|}
-  ###  <u>=''User_main=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|=user_id=||int(11)||Yes||NULL
-|-
-|=user_name=||varchar(25)||Yes||
-|-
-|user_password||varchar(25)||Yes||
-|-
-|user_email||varchar(128)||Yes||
-|-
-|}
-  ###  <u>=''User_online_status=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|user_id||int(11)||Yes||
-|-
-|last_online_time||datetime||Yes||
-|-
-|online_status||enum(\’yes\’, \’no\’)||Yes||
-|-
-|}
-  ###  <u>=''User_profile=''</u>
-{|
-|=Field=||=Type=||=Null=||=Default=
-|-
-|user_id||int(11)||Yes||
-|-
-|first_name||varchar(25)||Yes||NULL
-|-
-|last_name||varchar(25)||Yes||NULL
-|-
-|Gender||enum(\’m\’, \’f\’)||Yes||m
-|-
-|user_image||varchar(50)||Yes||NULL
-|-
-|profile_url||varchar(100)||Yes||
-|-
-|country||varchar(50)||Yes||NULL
-|-
-|city||varchar(50)||Yes||NULL
-|-
-|interests||varchar(100)||Yes||
-|-
-|date_of_birth||varchar(20)||Yes||NULL
-|-
-|}
-  ###  <u><u>=''User_scrap=''</u></u>
-{|
-|=Field=||=Type=||=Null=||==Default==
-|-
-|scrap_id||int(11)||Yes||
-|-
-|sender_id||int(11)||Yes||
-|-
-|receiver_id||int(11)||Yes||
-|-
-|scrap_content||text||Yes||
-|-
-|}
+===Application_data===
+||
+||*Field*||*Type*||*Null*||*Default||
+||application_id*||int(11)||Yes||-||
+||*user_id*||int(11)||Yes||-||
+||*module_id*||int(11)||Yes||-||
+||*Key*||char(128)||Yes||-||
+||value||char(255)||Yes||-||
+||
+===User_album===
+||
+||*Field*||*Type*||*Null*||*Default*
+||user_id||int(11)||Yes||-||
+||photo_id||int(11)||Yes||-||
+||photo_name||varchar(50)||Yes||-||
+||thumb_name||varchar(50)||Yes||-||
+||photo_caption||varchar(100)||Yes||NULL||-||
+||
+===User_applications===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||id||int(11)||Yes||NULL||-||
+||user_id||int(11)||Yes||-||
+|application_id||int(11)||Yes||-||
+||
+===User_broadcast===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||user_id||int(11)||Yes||-||
+||header||varchar(100)||Yes||NULL||-||
+|article||varchar(1024)||Yes||NULL||-||
+||article_title||varchar(50)||Yes||NULL||-||
+||time_expire||datetime||Yes||-||
+||
+===User_friend===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||user_id||int(11)||Yes||-||
+||*friend_id*||int(11)||Yes||-||
+||pending||enum(\’yes\’, \’no\’)||Yes||-||
+||
+===User_main===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||user_id||int(11)||Yes||NULL||-||
+||user_name||varchar(25)||Yes||-||
+||user_password||varchar(25)||Yes||-||
+||user_email||varchar(128)||Yes||-||
+||
+===User_online_status===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||user_id||int(11)||Yes||-||
+||last_online_time||datetime||Yes||-||
+||online_status||enum(\’yes\’, \’no\’)||Yes||-||
+||
+===User_profile===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||user_id||int(11)||Yes||-||
+||first_name||varchar(25)||Yes||NULL||-||
+||last_name||varchar(25)||Yes||NULL||-||
+||Gender||enum(\’m\’, \’f\’)||Yes||m||-||
+||user_image||varchar(50)||Yes||NULL||-||
+||profile_url||varchar(100)||Yes||-||
+||country||varchar(50)||Yes||NULL||-||
+||city||varchar(50)||Yes||NULL||-||
+||interests||varchar(100)||Yes||-||
+||date_of_birth||varchar(20)||Yes||NULL||-||
+||
+===User_scrap===
+||
+||*Field*||*Type*||*Null*||*Default*||
+||scrap_id||int(11)||Yes||-||
+||sender_id||int(11)||Yes||-||
+||receiver_id||int(11)||Yes||-||
+||scrap_content||text||Yes||-||
+||
