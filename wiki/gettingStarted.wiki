@@ -2,8 +2,8 @@
 
 This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to !opensocial specification.
 ==Assumption==
-  # $!ZingWeb = path to !ZingWeb project
-  # $!ZingWebConfig = path to !ZingWebConfig project
+  # ${!ZingWeb} = path to !ZingWeb project
+  # ${!ZingWebConfig} = path to !ZingWebConfig project
 
 =CONFIGURING ZING=
   # Download projects !ZingWeb and !ZingWebConfig from [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
