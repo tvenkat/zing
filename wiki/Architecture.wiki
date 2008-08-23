@@ -1,90 +1,17 @@
-=Zing: Architecture Design Document=
-
-
-
-
-
-
-
-
-
-= =
-
-
-
-
-
-
-
-
-
-
-Author: Impetus InfoTech India =  
-=
-=Revision History=
-
-
-
-{|
-|=Revision No=||=Author=||=Date=||=Reason for Change=||=Comments=
-|-
-|1.||Impetus InfoTech||Aug 20<sup>th</sup>, 2008||Creation||NA
-|-
-|||||||||
-|-
-|}
-= 
-					Table of Content=
-=[=<u>1.</u>	<u>Introduction</u>	4-]
-<u>[2.</u>	<u>Project Stack</u>	4-]
-<u>[2.1</u>	<u>Hardware Stack</u>	4-]
-<u>[2.2</u>	<u>Software Stack</u>	4-]
-<u>[3.</u>	<u>Architectural Components</u>	5-]
-<u>[2.3</u>	<u>SNS Container</u>	7-]
-<u>[3.1.1</u>	<u>Gadget Container (iFrame)</u>	7-]
-<u>[3.1.2</u>	<u>SNS Custom Service Layer</u>	8-]
-<u>[2.4</u>	<u>Shindig Container</u>	8-]
-<u>[3.1.3</u>	<u>Gadget Rendering Handler</u>	8-]
-<u>[3.1.4</u>	<u>RESTful Service Handler</u>	9-]
-<u>[3.1.4.1</u>	<u>Person\’s Profile Data</u>	9-]
-<u>[3.1.4.2</u>	<u>Activities Data</u>	9-]
-<u>[3.1.4.3</u>	<u>AppData (Application Data)</u>	10-]
-<u>[3.1.5</u>	<u>Shindig Container Features</u>	10-]
-<u>[3.1.5.1</u>	<u>Caja</u>	10-]
-<u>[3.1.5.2</u>	<u>OAuth</u>	12-]
-<u>[3.1.6</u>	<u>Service Layer</u>	13-]
-<u>[3.1.6.1</u>	<u>People Service</u>	13-]
-<u>[3.1.6.2</u>	<u>Activity Service</u>	13-]
-<u>[3.1.6.3</u>	<u>Application Service</u>	13-]
-<u>[4.</u>	<u>ZING DB Schema:</u>	13-]
-''[3.1.7''	''Activities''	13-]
-''[3.1.8''	''Media_items''	14-]
-''[3.1.9''	''Applications''	14-]
-''[3.1.10''	''Application_data''	14-]
-''[3.1.11''	''User_album''	14-]
-''[3.1.12''	''User_applications''	14-]
-''[3.1.13''	''User_broadcast''	15-]
-''[3.1.14''	''User_friend''	15-]
-''[3.1.15''	''User_main''	15-]
-''[3.1.16''	''User_online_status''	15-]
-''[3.1.17''	''User_profile''	15-]
-''[3.1.18''	''User_scrap''	15-]
-
-  # <u>= 
-Introduction=</u>
+=Introduction=
 
 The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (SNS) vis-à-vis Java Shindig OpenSocial Reference implementation.
 
 In this document a thorough inspection of all the individual constituent components and the features supported by Shindig server in technical perspective.
 
 
-  # <u>=Project Stack=</u>
+=Project Stack=
 
-  ## =Hardware Stack=
+==Hardware Stack==
 
 As provided.
 
-  ## =Software Stack=
+==Software Stack==
 
 This section enlists all the software that has been used for the application development.
 
@@ -95,52 +22,31 @@ This section enlists all the software that has been used for the application dev
   # JSF 1.2 with Facelets 1.1 and Trinidad component library 1.0.8
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  # <u>=Architectural Components=</u>
+=Architectural Components=
 
 
  
-=Zing Architecture Diagram=
+==Zing Architecture Diagram==
 
-
- 
-
-
-=Configuration Handler=
+===Configuration Handler===
 This class is a configuration handler for the entire application. It makes use of the apache commons configuration internally. The objective of this class is to manage all types of properties (.properties/.xml and system) by the use of a common interface (ConfigInterface). 
-=Persistence Framework=
+
+===Persistence Framework===
 This framework is a reusable component that is used for entire database access across the Zing application. This framework uses the configuration interface for retrieving the persistence configuration to map the objects to queries.
-=Services Factory=
+
+===Services Factory===
 This is a factory class responsible for singleton instantiation of services in the application that are stateless in nature. Service Locator uses the service factory for one-time instantiation of service objects
 
-=Exception Handler=
+===Exception Handler===
 The exception handler handles the application exception and uses the logger and configuration framework to log the appropriate exception and re-throw it appropriately
-=Logger=
+
+===Logger===
 This is an application wide logger that is responsible for logging messages in the log file.
-=Data Objects=
+
+===Data Objects===
 These are the objects that hold the state for the user requests and responses for rendering information on the web pages. They are serializable for future remotability.
 
-
-
-  ## =SNS Container=
+===SNS Container===
 
 This is basically web container that hosts Java Social Networking Site (SNS) which supports various different features. To make this site open social compatible, i.e., it can host the OpenSocial gadgets; it is integrated with Shindig Java Server, which is an open source implementation of the OpenSocial specification and gadgets specification.
 
@@ -148,16 +54,17 @@ SNS site is also referred as container, as it can host the OpenSocial gadgets an
 
 
 
-  ###  <u>=Gadget Container (iFrame)=</u>
+===Gadget Container (iFrame)===
 
 The integration of Shindig with SNS is done via iFrame, which act as a container to host the gadgets inside the SNS. iFrame provides the environment to execute the gadgets inside the web pages. 
 
 iFrame is the significant means for the integration of SNS with the Shindig server.  Below is the code snippet use to embed the gadgets within the SNS.
 
-			=Code Snippet=
-		
+====Code Snippet====
+{{{		
 <iframe src="http://path/to/shindig/gadgets/ifr?parent=http://path/to/shindig&amp;url=http://url/of/gadget &amp;st=viewer_id:owner_id:app_key:domain_key:app_url_key:module_key">
 </iframe>
+}}}
 
 Parameter Description:
 
@@ -171,17 +78,17 @@ Parameter Description:
 |}
 
 
-  ###  <u>=SNS Custom Service Layer=</u>
+===SNS Custom Service Layer====
 
 Custom Service Layer is used by the SNS to fetch the data from the database bypassing the Shindig Container service layer. This provides the flexibility and performance improvement over retrieving the data from Shindig Service Layer via RESTful services. 
 
-  ## =Shindig Container=
+===Shindig Container===
 
 Shindig container is an open source implementation of the OpenSocial specification and gadgets specification. It executes atop of Servlet APIs and handles various request of Gadget rendering and Data serving to the gadgets and pages over the HTTP protocol. 
 
 Various features provided by the Shindig container are CAJA, OAuth etc. Adding to this, it also contains a service layer, which inscribes people services, activity service and application service, which talks with the database layer to retrieve respective data. 
 
-  ###  <u>=Gadget Rendering Handler=</u>
+===Gadget Rendering Handler===
 
 The sole responsibility of this component is to handle the Gadget Rendering request and returns the rendered component over the HTTP protocol. This component works vis-à-vis Gadget Server which renders the gadget XML into JavaScript and HTML for the container to expose via the container JavaScript.
 
@@ -191,7 +98,7 @@ The gadget rendering request diverted to the Gadget Rendering Handler, which con
   # Security Token
 
 
-  ###  <u>=RESTful Service Handler=</u>
+===RESTful Service Handler===
 
 The RESTful capabilities of the Shindig container are exposed through this handler. It serves to fulfill the OpenSocial data request via RESTful calls. When a gadget is rendered within the SNS, it simultaneously makes the OpenSocial data request, which is handled through this component of Shindig Container.
 
@@ -199,62 +106,62 @@ This component works in conjunction with Shindig Container Service Layer to fetc
 
 Following are the different scenario for feting user\’s data (profile, activities, & app data)
 
-#  ###  <u>=Person\’s Profile Data=</u>
+  #Person\’s Profile Data
 
-  ## Collection of all people connected to user \{guid\}
+    ## Collection of all people connected to user \{guid\}
 	''http://path/to/shindig/social/rest/people/\{guid\}/@all''
 
-  ## Collection of all friends of user \{guid\}
+    ## Collection of all friends of user \{guid\}
 	''http://path/to/shindig/social/rest/people/\{guid\}/@friends''
 
-  ## Collection of all people connected to user \{guid\} in group \{groupid\}
+    ## Collection of all people connected to user \{guid\} in group \{groupid\}
 	''http://path/to/shindig/social/rest/people/\{guid\}/\{groupid\}''
 	
-  ## Individual person record for a specific person known to \{guid\}; shows \{guid\}\’s view of \{pid\}
+    ## Individual person record for a specific person known to \{guid\}; shows \{guid\}\’s view of \{pid\}
 	''http://path/to/shindig/social/rest/people/\{guid\}/@all/\{pid\}                ''
 
-  ## Profile record for user \{guid\}
+    ## Profile record for user \{guid\}
 	''http://path/to/shindig/social/rest /people/\{guid\}/@self''
 
-  ## Profile record for requestor
+    ## Profile record for requestor
 	''http://path/to/shindig/social/rest /people/@me/@self                       ''
   
-#  ###  <u>=Activities Data=</u>
+  # Activities Data
 
-  # Collection  of Activities generated by given user \{guid\}
+    ## Collection  of Activities generated by given user \{guid\}
 	        		 ''http://path/to/shindig/social/rest/activities/\{guid\}/@self''
 
-  # Collection of all friends of user \{guid\} Collection of activities for friends of the user \{guid\}
+    ## Collection of all friends of user \{guid\} Collection of activities for friends of the user \{guid\}
 	   		''http://path/to/shindig/social/rest/activities/\{guid\}/@friends             ''
 
-  # Collection of activities for people in group \{groupid\} belonging to given user \{uid \}
+    ## Collection of activities for people in group \{groupid\} belonging to given user \{uid \}
 			 ''http://path/to/shindig/social/rest/activities/\{guid\}/\{groupid\}            ''
 
-  # Individual activity resource; usually discovered from collection 
+    ## Individual activity resource; usually discovered from collection 
 			''http://path/to/shindig/social/rest/activities/\{guid \}/@self/\{activityid\}   ''
 
 
 
-#  ###  <u>=AppData (Application Data)=</u>
+  #AppData (Application Data)
 
-  ## All app data for user \{guid\}, app \{appid\}
+    ## All app data for user \{guid\}, app \{appid\}
 	''http://path/to/shindig/social/rest/appdata/\{guid\}/@self/\{appid\}''
 
-  ## app data for friends of user \{guid\} and app \{appid\}
+    ## app data for friends of user \{guid\} and app \{appid\}
 	''http://path/to/shindig/social/rest/appdata/\{guid\}/@friends/\{appid\} ''
 
-  ## Just the count field for user \{guid\}, app \{appid\}
+    ## Just the count field for user \{guid\}, app \{appid\}
 	''http://path/to/shindig/social/rest/appdata/\{guid\}/@self/\{appid\}?fields=count ''
 
 
-                   All of the above requests can have standard query parameter like ''format (''format is used to tell the container in which format output is required. The two standard values of format are json & atom. Container may support more other than these two but these two are must).
+All of the above requests can have standard query parameter like *format (format is used to tell the container in which format output is required. The two standard values of format are json & atom. Container may support more other than these two but these two are must)*.
 
 
-  ###  <u>=Shindig Container Features =</u>
+==Shindig Container Features==
 
 Shindig contains various features, of which CAJA and OAuth were exploited within the SNS. These features are elaborated below:
 
-#  ###  <u>=Caja=</u>
+===Caja==
 
 Using Caja, Shindig Container can safely allow scripts gadgets provided by third party. Caja enables documents to carry active content safely, i.e., scripts in web pages. 
 
@@ -263,7 +170,7 @@ Web apps generally remove scripts from third party content, reducing content to 
 There were some tweakins made to enable the CAJA feature in Shindig, which is disable by default are enlisted below:
 
   # Uncomment the line\#23 =feature.xml= file located at: Shindig_SRC\features\opensocial-current so that it can include the CAJA dependency. Find the code snippet below:
-
+{{{
   <name>opensocial-0.8</name>
   <dependency>opensocial-reference</dependency>
   =<dependency>caja</dependency> =
@@ -284,8 +191,8 @@ There were some tweakins made to enable the CAJA feature in Shindig, which is di
        "activity" : \["id", "title"\]
     \}
   \}
-
-#  ###  <u>=OAuth=</u>
+}}}
+===OAuth===
 
 OAuth allows to share private resources (photos, videos, contact list, bank accounts) stored on one site with another site without having to hand out username and password. 
 
@@ -296,7 +203,7 @@ To use this service, service provider provides secret key to the consumer, which
 Shindig works as a consumer to OAuth service and a secret key need to be provided to be provided to formulate the Request Token for a specific gadget. This key is provided in =oauth.json= file located at Shindig_SRC\shindig\config.
 
 The snippet for the same is given below:
-
+{{{
 \{
 "Gadget URL" : \{
     "Service_Name" : \{
@@ -305,7 +212,7 @@ The snippet for the same is given below:
      	 "key_type" : "Key Type"
     \}
   \}
-
+}}}
 Parameter Description:
 
 {|
@@ -392,6 +299,7 @@ Attached is the MYSQL DB Structure used in ZING:
 |-
 |id||int(11)||Yes||NULL
 |-
+
 |=application_url=||char(128)||Yes||
 |-
 |title||char(128)||Yes||NULL
