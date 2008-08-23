@@ -1,6 +1,6 @@
 =Introduction=
 
-The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (SNS) vis-à-vis Java Shindig OpenSocial Reference implementation.
+The purpose of this document is to explicate the detailed technical architecture of the Zing, which is a Social Networking Site (SNS) vis-à-vis Java Shindig !OpenSocial Reference implementation.
 
 In this document a thorough inspection of all the individual constituent components and the features supported by Shindig server in technical perspective.
 
