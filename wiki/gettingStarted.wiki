@@ -7,6 +7,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
 
 =CONFIGURING ZING=
   # Download projects !ZingWeb and !ZingWebConfig from [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
+  # Change the web.xml for the project ZingWeb, and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
   # Execute maven build file provided with !ZingWeb project. This will generate target  directory within the project, which contains "!ZingWeb" directory.
   # Download Jetty Server 6.1.9 from [http://dist.codehaus.org/jetty], and deploy the "!ZingWeb" war in the  Jetty Server.
   # Browse to ${!ZingWebConfig}/persistence/persistence.xml. Configure this file based on database credentials.
