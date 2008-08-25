@@ -5,7 +5,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
 
-===CONFIGURING ZING===
+===Configuring Zing===
   # Download projects !ZingWeb and !ZingWebConfig from [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
   # Change the web.xml for the project !ZingWeb and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
   # Execute maven build file provided with !ZingWeb project. This will generate target  directory within the project, which contains "!ZingWeb" directory.
@@ -13,14 +13,14 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Browse to ${!ZingWebConfig}/persistence/persistence.xml. Configure this file based on database credentials.
   # Set -DCOMPOSITE_CONFIG="${!ZingWebConfig}/configurations/configurationControlFile.xml" as environment variable.
    
-===CONFIGURING SHINDIG===
+===Configuring Shindig===
   # Download the latest version of Shindig from Apache.
   ## Download !ZingShindigUpdate files from : http://zing.googlecode.com/svn/trunk/zing/downloads/zingshindigupdate/update_01.rar.
   ## Extract this rar, and make changes into SpiceDBLayer.java, to provide database credentials.
   ## Place these two files in "org.apache.shindig.social.sample.spi" package of Shindig-!OpenSocial-Api project.  Use maven scripts to compile the Shindig code.
   # Deploy the generated Shindig war into ROOT directory of Jetty server. 
 
-===CONFIGURING DATABASE===
+===Configuring Database===
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
 Finally, start the Jetty server and hit the URL: {{{http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}
 
