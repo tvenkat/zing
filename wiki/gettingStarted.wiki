@@ -1,4 +1,4 @@
-=Getting Started=
+==Getting Started==
 
 This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to opensocial specification.
 ===Assumption===
