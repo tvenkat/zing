@@ -1,6 +1,6 @@
 =Getting Started=
 
-This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to !opensocial specification.
+This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to opensocial specification.
 ===Assumption===
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
