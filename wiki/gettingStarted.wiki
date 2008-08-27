@@ -33,5 +33,10 @@ This guide provides step by step configuration of Zing project, which is a Java 
 Finally, start the Jetty server and hit the URL: {{{http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}
 
 ===Login Credentials===
+
+ Below are the test login creadentials:
+
  # Username: test, password=test
  # Username: impetus, password=impetus
+
+ User can also signup with the Zing to create its own user id.
