@@ -5,6 +5,10 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
 
+===Prerequisites===
+  * JDK 1.6 
+  * MAVEN 
+
 ===Configuring Zing===
   # Download projects !ZingWeb and !ZingWebConfig from [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
   # Change the web.xml for the project !ZingWeb and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
