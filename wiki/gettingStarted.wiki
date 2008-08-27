@@ -39,4 +39,4 @@ Below are the test login creadentials:
  # Username: test, password=test
  # Username: impetus, password=impetus
 
-User can also signup with Zing.
+User can also signup with Zing to create new user.
