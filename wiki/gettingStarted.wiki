@@ -26,7 +26,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Download the Shindig revision: 687705 from Apache.
   ## Download !ZingShindigUpdate files from : http://zing.googlecode.com/svn/trunk/zing/downloads/zingshindigupdate/update_01.rar.
   ## Extract this rar, and make changes into SpiceDBLayer.java, to provide database credentials.
-  # Remove the "test" folders within the "src" directory of common, gadgets, server & social-api in Shindig code. 
+  # Remove the "test" folders within the "src" directory of common, gadgets, server & social-api of Shindig code. 
   ## Place these two files in "org.apache.shindig.social.sample.spi" package of Shindig-!OpenSocial-Api project.  Use maven scripts to compile the Shindig code.
   # Deploy the generated Shindig war into ROOT directory of Jetty server. 
 
