@@ -8,7 +8,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
 
 ===Prerequisites===
   * JDK 1.6 
-  * MAVEN 
+  * MAVEN 2
 
 ===Configuring Zing===
   # Download projects !ZingWeb and !ZingWebConfig from [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
