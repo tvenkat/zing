@@ -16,7 +16,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Execute maven build file provided with !ZingWeb project. This will generate target  directory within the project, which contains "!ZingWeb" directory.
   # Download Jetty Server 6.1.9 from [http://dist.codehaus.org/jetty], and deploy the "!ZingWeb" exploded war in the  Jetty Server.
   # Browse to lib directory of "!ZingWeb" exploded war, then cut "el-api-6.0.18.jar" and paste it to ${!Jetty_Home}/lib/ext directory.
-  # Browse to ${!ZingWebConfig}/persistence/persistence.xml. Configure this file based on database credentials.
+  # Browse to ${!ZingWebConfig}/configurations/persistence/persistence.xml. Configure this file based on database credentials.
   # Set COMPOSITE_CONFIG="${!ZingWebConfig}/configurations/configurationControlFile.xml" as environment variable.
    
 ===Configuring Shindig===
