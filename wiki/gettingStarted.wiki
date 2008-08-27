@@ -34,7 +34,7 @@ Finally, start the Jetty server and hit the URL: {{{http://<ip-of-your-machine>:
 
 ===Login Credentials===
 
-Below are the test login creadentials:
+Below are the test login credentials:
 
  # Username: test, password=test
  # Username: impetus, password=impetus
