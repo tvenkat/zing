@@ -4,7 +4,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
 ===Assumption===
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
-  # ${!Jetty_Home} = path to !Jetty server
+  # ${!Jetty_Home} = path to Jetty server
 
 ===Prerequisites===
   * JDK 1.6 
