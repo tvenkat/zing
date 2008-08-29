@@ -14,7 +14,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
   # ${!Jetty_Home} = path to Jetty server
-  # ${!Shindig} = path to Shindig source
+  # ${Shindig} = path to Shindig source
 
 ===Configuring Zing Database===
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
