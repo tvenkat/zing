@@ -9,8 +9,8 @@ This guide provides step by step configuration of Zing project, which is a Java 
 ===Prerequisites===
   # JDK 1.6 
   # Maven 2.0.9
-    ## Set M2_HOME as environment variable.
-    ## Set Path as %M2_HOME%/bin
+    * Set M2_HOME as environment variable.
+    * Set Path as %M2_HOME%/bin
 
 ===Configuring Zing Database===
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
