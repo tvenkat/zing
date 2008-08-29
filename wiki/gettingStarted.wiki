@@ -9,6 +9,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
     * Update Path variable to append %M2_HOME%/bin.
   # Jetty 6.1.9. Jetty can be downloaded from http://dist.codehaus.org/jetty/jetty-6.1.9
   # Shindig revison: 687705. It can be downloaded from http://svn.apache.org/repos/asf/incubator/shindig/trunk
+  # MySQL 5
 
 ===Assumption===
   # ${!ZingWeb} = path to !ZingWeb project
