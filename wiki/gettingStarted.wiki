@@ -6,7 +6,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # JDK 1.6 
   # Maven 2.0.9
     * Set M2_HOME as environment variable.
-    * Set Path variable to append %M2_HOME%/bin.
+    * Update Path variable to append %M2_HOME%/bin.
   # Jetty 6.1.9. Jetty can be downloaded from http://dist.codehaus.org/jetty/jetty-6.1.9
   # Shindig revison: 687705. It can be downloaded from http://svn.apache.org/repos/asf/incubator/shindig/trunk
 
