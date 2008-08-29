@@ -22,7 +22,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
 ===Configuring Zing===
   # Download projects !ZingWeb and !ZingWebConfig from http://zing.googlecode.com/svn/trunk/zing
   # Change the web.xml for !ZingWeb project located at ${!ZingWeb}/!WebContent/WEB-INF and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
-  # Execute the command *` mvn package `* to generate build for !ZingWeb project. Maven build file "pom.xml" can be located within "!ZingWeb" project. This will generate "target"  directory within the project, which contains "!ZingWeb" directory.
+  # Execute the command *` mvn package`* to generate build for !ZingWeb project. Maven build file "pom.xml" can be located within "!ZingWeb" project. This will generate "target"  directory within the project, which contains "!ZingWeb" directory.
   # Deploy the "!ZingWeb" exploded war within the "webapps" directory on Jetty Server.
   # Browse to "lib" directory of "!ZingWeb" exploded war, then cut "el-api-6.0.18.jar" and paste it to ${!Jetty_Home}/lib/ext directory.
   # Browse to ${!ZingWebConfig}/configurations/persistence/persistence.xml. Configure this file based on database credentials.
@@ -31,8 +31,9 @@ This guide provides step by step configuration of Zing project, which is a Java 
 ===Configuring Shindig===
   # Download !ZingShindigUpdate files from : http://zing.googlecode.com/svn/trunk/zing/downloads/zingshindigupdate/update_01.rar.
   # Extract this rar, and make changes into SpiceDBLayer.java, to provide database credentials.
-  # Remove the "test" folders within the "src" directory of common, gadgets, server & social-api projects of Shindig code. 
-  # Place these two files in "org.apache.shindig.social.sample.spi" package of Shindig's social-api project.  Use maven scripts to compile the Shindig code.
+  # Place these two files in "${Shindig}/java/social-api/src/main/java/org/apache/shindig/social/sample/spi" directory.  
+  # Delete the "test" directories lacated at ${Shindig}/java/common, ${Shindig}/java/gadgets, ${Shindig}/java/server & ${Shindig}/java/social-api. 
+  # Execute *` mvn package`* command for maven build file located at ${Shindig} directory.
   # Deploy the generated Shindig war into ROOT directory of Jetty server. 
 
 Finally, start the Jetty server and hit the URL: {{{http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}
