@@ -12,7 +12,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
     * Set M2_HOME as environment variable.
     * Set Path variable to append %M2_HOME%/bin.
   # Jetty 6.1.9. Jetty can be downloaded from http://dist.codehaus.org/jetty/jetty-6.1.9
-  # Shindig revison: 687705 from http://svn.apache.org/repos/asf/incubator/shindig/trunk
+  # Download Shindig revison: 687705 from http://svn.apache.org/repos/asf/incubator/shindig/trunk
 
 ===Configuring Zing Database===
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
