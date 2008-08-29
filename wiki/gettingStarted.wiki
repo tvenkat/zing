@@ -16,7 +16,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
 
 ===Configuring Zing===
-  # Download projects !ZingWeb[http://zing.googlecode.com/svn/trunk/zing/ZingWeb] and !ZingWebConfig[http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
+  # Download projects !ZingWeb [http://zing.googlecode.com/svn/trunk/zing/ZingWeb] and !ZingWebConfig [http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig]
   # Change the web.xml for !ZingWeb project located at ${ZingWeb}/WebContent/WEB-INF and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
   # Execute maven build file provided with !ZingWeb project. This will generate target  directory within the project, which contains "!ZingWeb" directory.
   # Download Jetty Server 6.1.9 from [http://dist.codehaus.org/jetty], and deploy the "!ZingWeb" exploded war in the  Jetty Server.
