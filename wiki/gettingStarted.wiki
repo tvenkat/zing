@@ -11,7 +11,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Shindig revison: 687705. It can be downloaded from http://svn.apache.org/repos/asf/incubator/shindig/trunk
   # MySQL 5
 
-===Assumption===
+===Path References===
   # ${!ZingWeb} = path to !ZingWeb project
   # ${!ZingWebConfig} = path to !ZingWebConfig project
   # ${!Jetty_Home} = path to Jetty server
