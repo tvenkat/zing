@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<Resources>
+	<Authentication-Alias name="default">
+		<username>root</username>
+		<password>root</password>
+		<url>jdbc:mysql://localhost:3306/zing</url>
+		<driver>com.mysql.jdbc.Driver</driver>
+	</Authentication-Alias>
+</Resources>
+
+
+
+
+
+
