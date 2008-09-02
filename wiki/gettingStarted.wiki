@@ -37,7 +37,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Execute *` mvn package`* command for maven build file located at ${Shindig} directory. It generates "shindig-server-1-SNAPSHOT" directory at ${Shindig}/java/server/target directory.
   # Copy the contents of generated "shindig-server-1-SNAPSHOT" to ${!Jetty_Home}/webapps/ROOT directory of Jetty server. 
 
-Finally, start the Jetty server and hit the URL: {{{*http://<ip-of-jetty-server>:<jetty-port>/ZingWeb/faces/pages/login.jspx*}}}
+Finally, start the Jetty server and hit the URL: *{{{http://<ip-of-jetty-server>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}*
 
 ===Login Credentials===
 
