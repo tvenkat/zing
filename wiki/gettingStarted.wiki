@@ -41,7 +41,7 @@ Finally, start the Jetty server and hit the URL: *{{{http://<ip-of-jetty-server>
 
 Below are the test login credentials:
 
- # Username: test, password:test
+ # Username: *test*, password:*test*
 
 
 User can also signup with Zing to create new user.
