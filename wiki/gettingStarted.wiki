@@ -1,5 +1,3 @@
-==Getting Started==
-
 This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to opensocial specification.
 
 ===Prerequisites===
@@ -8,7 +6,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
     * Set M2_HOME as environment variable.
     * Update path environment variable to append %M2_HOME%/bin.
   # Jetty 6.1.9. Jetty can be downloaded from http://dist.codehaus.org/jetty/jetty-6.1.9
-  # Shindig revison: 687705. It can be downloaded from http://svn.apache.org/repos/asf/incubator/shindig/trunk
+  # Shindig revision: 687705. It can be downloaded from http://svn.apache.org/repos/asf/incubator/shindig/trunk
   # MySQL 5
 
 ===Path References===
@@ -21,8 +19,8 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Download the database script zing_db.sql from [http://zing.googlecode.com/svn/trunk/zing/downloads/database/script/zing_db.sql], and execute the script on MySQL database.
 
 ===Configuring Zing===
-  # Download projects !ZingWeb and !ZingWebConfig from http://zing.googlecode.com/svn/trunk/zing
-  # Change the web.xml for !ZingWeb project located at ${!ZingWeb}/!WebContent/WEB-INF and configure the "GadgetServerURL" parameter according to "ip-of-shindig-server" and "port".
+  # Get the projects !ZingWeb and !ZingWebConfig. Do a svn checkout for http://zing.googlecode.com/svn/trunk/zing/ZingWeb/ and http://zing.googlecode.com/svn/trunk/zing/ZingWebConfig/
+  # Change the web.xml for !ZingWeb project located at ${!ZingWeb}/!WebContent/WEB-INF and configure the "GadgetServerURL" parameter according to "ip-of-jetty-server" and "jetty-port".
   # Execute the command *` mvn package`* to generate build for !ZingWeb project. Maven build file "pom.xml" can be located within "!ZingWeb" project. This will generate "target"  directory within the project, which contains "!ZingWeb" directory.
   # Browse to "lib" directory within "WEB-INF" of "!ZingWeb" exploded war, then cut "el-api-6.0.18.jar" and paste it to ${!Jetty_Home}/lib/ext directory. 
   # Place the "!ZingWeb" exploded war within ${!Jetty_Home}/webapps directory.
@@ -31,7 +29,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
    
 ===Configuring Shindig===
   # Download !ZingShindigUpdate files from : http://zing.googlecode.com/svn/trunk/zing/downloads/zingshindigupdate/update_01.rar.
-  # Extract this rar, and make changes into SpiceDBLayer.java, to provide database credentials.
+  # Extract this archive and make changes into SpiceDBLayer.java, to provide database credentials.
   # Place these two files in "${Shindig}/java/social-api/src/main/java/org/apache/shindig/social/sample/spi" directory.  
   # Delete the "test" directories located at ${Shindig}/java/server/src & ${Shindig}/java/social-api/src. 
   # Execute *` mvn package`* command for maven build file located at ${Shindig} directory. It generates "shindig-server-1-SNAPSHOT" directory at ${Shindig}/java/server/target directory.
@@ -44,6 +42,6 @@ Finally, start the Jetty server and hit the URL: *{{{http://<ip-of-jetty-server>
 Below are the test login credentials:
 
  # Username: test, password:test
- # Username: impetus, password:impetus
+
 
 User can also signup with Zing to create new user.
