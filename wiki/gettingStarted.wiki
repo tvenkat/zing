@@ -26,7 +26,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Execute the command *` mvn package`* to generate build for !ZingWeb project. Maven build file "pom.xml" can be located within "!ZingWeb" project. This will generate "target"  directory within the project, which contains "!ZingWeb" directory.
   # Browse to "lib" directory within "WEB-INF" of "!ZingWeb" exploded war, then cut "el-api-6.0.18.jar" and paste it to ${!Jetty_Home}/lib/ext directory. 
   # Place the "!ZingWeb" exploded war within ${!Jetty_Home}/webapps directory.
-  # Browse to ${!ZingWebConfig}/configurations/persistence/persistence.xml. Configure this file based on database credentials.
+  # Browse to ${!ZingWebConfig}/configurations/persistence/persistence.xml. Configure this file to provide database URL and credentials.
   # Set COMPOSITE_CONFIG="${!ZingWebConfig}/configurations/configurationControlFile.xml" as environment variable.
    
 ===Configuring Shindig===
@@ -37,7 +37,7 @@ This guide provides step by step configuration of Zing project, which is a Java 
   # Execute *` mvn package`* command for maven build file located at ${Shindig} directory. It generates "shindig-server-1-SNAPSHOT" directory at ${Shindig}/java/server/target directory.
   # Copy the contents of generated "shindig-server-1-SNAPSHOT" to ${!Jetty_Home}/webapps/ROOT directory of Jetty server. 
 
-Finally, start the Jetty server and hit the URL: {{{http://<ip-of-your-machine>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}
+Finally, start the Jetty server and hit the URL: {{{http://<ip-of-jetty-server>:<jetty-port>/ZingWeb/faces/pages/login.jspx}}}
 
 ===Login Credentials===
 
