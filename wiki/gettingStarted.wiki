@@ -1,6 +1,6 @@
 This guide provides step by step configuration of Zing project, which is a Java based SNS site, conforming to opensocial specification. 
 
-Note: Zing project is tested on Windows platform.
+Note: Zing project is tested on Windows XP platform for now. Though it should work on any platform which supports Java. We will test on other platforms soon. That is #1 in our roadmap.
 
 ===Prerequisites===
   # JDK 1.6 
