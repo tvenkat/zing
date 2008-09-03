@@ -31,10 +31,10 @@ Note: Zing project is tested on Windows platform.
    
 ===Configuring Shindig===
   # Download !ZingShindigUpdate files from : http://zing.googlecode.com/svn/trunk/zing/downloads/zingshindigupdate/update_01.rar.
-  # Download oauth.json from http://zing.googlecode.com/svn/trunk/zing/downloads/oauth/oauth.json for OAuth gadget. Configure this file to provide ip-of-jetty-server and jetty-port. Then place this file at ${Shindig}/config.
   # Extract this archive and make changes into SpiceDBLayer.java, to provide database credentials.
   # Place these two files in "${Shindig}/java/social-api/src/main/java/org/apache/shindig/social/sample/spi" directory.  
   # Delete the "test" directories located at ${Shindig}/java/server/src & ${Shindig}/java/social-api/src. 
+  # Download oauth.json from http://zing.googlecode.com/svn/trunk/zing/downloads/oauth/oauth.json for OAuth gadget. Configure this file to provide ip-of-jetty-server and jetty-port. Then place this file at ${Shindig}/config.
   # Execute *` mvn package`* command for maven build file located at ${Shindig} directory. It generates "shindig-server-1-SNAPSHOT" directory at ${Shindig}/java/server/target directory.
   # Copy the contents of generated "shindig-server-1-SNAPSHOT" to ${!Jetty_Home}/webapps/ROOT directory of Jetty server. 
 
